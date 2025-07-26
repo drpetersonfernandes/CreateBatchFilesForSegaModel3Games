@@ -43,8 +43,11 @@ This application simplifies the process of creating batch files for launching Se
 *   **AboutWindow.xaml/AboutWindow.xaml.cs:** A separate window that displays application information, version, and credits.
 *   **BugReportService.cs:** Implements a service for silently sending bug reports to a remote API using a shared, static `HttpClient`.
 
-### Bug Reporting
+## Support
 
-The application includes a `BugReportService` that silently sends bug reports to a remote API. This helps in identifying and fixing issues without requiring user intervention. The API configuration is centralized in `App.xaml.cs`.
+If you like the software, please give us a star.<br>
+Consider [donating](https://www.purelogiccode.com/donate) to support the project or simply to express your gratitude!
 
-**Important:** The `BugReportApiUrl` and `BugReportApiKey` are placeholders. A valid API key is required for the bug reporting feature to function correctly.
+---
+
+Developed by [Pure Logic Code](https://www.purelogiccode.com).
