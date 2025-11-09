@@ -20,7 +20,7 @@ public partial class MainWindow
         LogMessage("");
         LogMessage("This program creates batch files to launch your Sega Model 3 games.");
         LogMessage("Please follow these steps:");
-        LogMessage("1. Select the Supermodel emulator executable file (Supermodel.exe)");
+        LogMessage("1. Select the Supermodel emulator executable file");
         LogMessage("2. Select the folder containing your Sega Model 3 ROM zip files");
         LogMessage("3. Click 'Create Batch Files' to generate the batch files");
         LogMessage("");
@@ -59,11 +59,6 @@ public partial class MainWindow
         SupermodelPathTextBox.Text = supermodelExePath;
         LogMessage($"Supermodel executable selected: {supermodelExePath}");
         UpdateStatusBarMessage("Supermodel executable selected.");
-
-        if (supermodelExePath.EndsWith("Supermodel.exe", StringComparison.OrdinalIgnoreCase)) return;
-
-        LogMessage("Warning: The selected file does not appear to be Supermodel.exe.");
-        _ = ReportBugAsync("User selected a file that doesn't appear to be Supermodel.exe: " + supermodelExePath);
     }
 
     private void BrowseFolderButton_Click(object sender, RoutedEventArgs e)
@@ -86,7 +81,7 @@ public partial class MainWindow
             if (string.IsNullOrEmpty(supermodelExePath))
             {
                 LogMessage("Error: No Supermodel executable selected.");
-                ShowError("Please select the Supermodel executable file (Supermodel.exe).");
+                ShowError("Please select the Supermodel emulator executable file.");
                 UpdateStatusBarMessage("Error: Supermodel executable not selected.");
                 return;
             }
@@ -94,7 +89,7 @@ public partial class MainWindow
             if (!File.Exists(supermodelExePath))
             {
                 LogMessage($"Error: Supermodel executable not found at path: {supermodelExePath}");
-                ShowError("The selected Supermodel executable file does not exist.");
+                ShowError("The selected Supermodel emulator executable file does not exist.");
                 await ReportBugAsync("Supermodel executable not found", new FileNotFoundException("The Supermodel executable was not found", supermodelExePath));
                 UpdateStatusBarMessage("Error: Supermodel executable not found.");
                 return;
@@ -150,7 +145,7 @@ public partial class MainWindow
     {
         var dialog = new OpenFileDialog
         {
-            Title = "Please select the Supermodel executable file (Supermodel.exe)",
+            Title = "Please select the Supermodel emulator executable file",
             Filter = "exe files (*.exe)|*.exe|All files (*.*)|*.*",
             RestoreDirectory = true
         };
