@@ -24,7 +24,7 @@ This application simplifies the process of creating batch files for launching Se
 ## System Requirements
 
 -   Windows Operating System
--   .NET 9 Desktop Runtime
+-   .NET 10 Desktop Runtime
 
 ## Technical Details
 
@@ -32,7 +32,7 @@ This application simplifies the process of creating batch files for launching Se
 
 *   **C#:** The primary programming language.
 *   **WPF (Windows Presentation Foundation):** Used for building the graphical user interface.
-*   **.NET 9:** The application targets the .NET 9 runtime.
+*   **.NET 10:** The application targets the .NET 10 runtime.
 *   **System.IO:** Used for file and directory operations.
 *   **System.Net.Http:** Used for sending bug reports to the API.
 
