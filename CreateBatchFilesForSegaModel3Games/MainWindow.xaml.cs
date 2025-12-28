@@ -54,7 +54,19 @@ public partial class MainWindow
     private void BrowseSupermodelButton_Click(object sender, RoutedEventArgs e)
     {
         var supermodelExePath = SelectFile();
-        if (string.IsNullOrEmpty(supermodelExePath)) return;
+        if (string.IsNullOrEmpty(supermodelExePath))
+        {
+            return;
+        }
+
+        var fileName = Path.GetFileName(supermodelExePath);
+        if (!string.Equals(fileName, "supermodel.exe", StringComparison.OrdinalIgnoreCase))
+        {
+            const string errorMessage = "Invalid file selected. Please select 'supermodel.exe'.";
+            ShowError(errorMessage);
+            LogMessage($"Error: {errorMessage} You selected '{fileName}'.");
+            return;
+        }
 
         SupermodelPathTextBox.Text = supermodelExePath;
         LogMessage($"Supermodel executable selected: {supermodelExePath}");
@@ -83,6 +95,15 @@ public partial class MainWindow
                 LogMessage("Error: No Supermodel executable selected.");
                 ShowError("Please select the Supermodel emulator executable file.");
                 UpdateStatusBarMessage("Error: Supermodel executable not selected.");
+                return;
+            }
+
+            if (!string.Equals(Path.GetFileName(supermodelExePath), "supermodel.exe", StringComparison.OrdinalIgnoreCase))
+            {
+                const string errorMessage = "The selected executable must be 'supermodel.exe'.";
+                LogMessage($"Error: {errorMessage}");
+                ShowError(errorMessage);
+                UpdateStatusBarMessage("Error: Invalid executable selected.");
                 return;
             }
 
@@ -145,8 +166,9 @@ public partial class MainWindow
     {
         var dialog = new OpenFileDialog
         {
-            Title = "Please select the Supermodel emulator executable file",
-            Filter = "exe files (*.exe)|*.exe|All files (*.*)|*.*",
+            Title = "Please select the Supermodel emulator executable file (supermodel.exe)",
+            FileName = "supermodel.exe",
+            Filter = "Supermodel Executable (supermodel.exe)|supermodel.exe|All Executables (*.exe)|*.exe",
             RestoreDirectory = true
         };
 
